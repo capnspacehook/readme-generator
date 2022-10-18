@@ -80,6 +80,7 @@ func main() {
 
 func buildTemplateInput() (*ReadmeTemplateData, error) {
 	repo := flag.String("repo", "", "GitHub repo URL (https)")
+	branch := flag.String("branch", "", "GitHub primary branch name")
 	name := flag.String("name", "", "Name of the image")
 	location := flag.String("location", "", "Location of the image")
 	description := flag.String("description", "", "Description of the image")
@@ -100,9 +101,10 @@ func buildTemplateInput() (*ReadmeTemplateData, error) {
 		return nil, err
 	}
 
-	rawUsageURL := fmt.Sprintf("%s/main/USAGE.md", strings.Replace(*repo, "https://github.com", "https://raw.githubusercontent.com", 1))
+	repoURL := strings.Replace(*repo, "https://github.com", "https://raw.githubusercontent.com", 1)
+	rawUsageURL := fmt.Sprintf("%s/%s/USAGE.md", repoURL, *branch)
 	usageMarkdown := fetchRemoteFileContents(rawUsageURL)
-	usesMelange := remoteFileExists(fmt.Sprintf("%s/blob/main/melange.yaml", *repo))
+	usesMelange := remoteFileExists(fmt.Sprintf("%s/blob/%s/melange.yaml", *repo, *branch))
 
 	input := ReadmeTemplateData{
 		Repo:          *repo,
