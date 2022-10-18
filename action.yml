@@ -39,7 +39,7 @@ runs:
         set -o errexit -o nounset -o errtrace -o pipefail
         cosign version
         if [[ ! -d readme-generator ]]; then
-          git clone https://github.com/chainguard-images/readme-generator.git
+          git clone https://github.com/capnspacehook/readme-generator.git
         fi
         if [[ ! -f readme-generator/run ]]; then
           pushd readme-generator
