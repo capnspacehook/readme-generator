@@ -32,7 +32,7 @@ docker pull {{.Location}}:latest
 
 ## Signing
 
-All Chainguard Images are signed using [Sigstore](https://sigstore.dev)!
+This image is signed using [Sigstore](https://sigstore.dev)!
 
 <details>
 <br/>
